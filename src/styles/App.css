@@ -1,42 +1,64 @@
-#root {
-  max-width: 1280px;
+/* Estilos generales para la aplicación */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Estilos para el contenedor principal */
+.library-container {
+  padding: 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Estilos para el título principal */
+.library-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #5a5a5a;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Estilos para las tarjetas de libros */
+.book-card {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-card:hover {
+  transform: translateY(-10px);
+}
+
+.book-card-img {
+  width: 100%;
+  height: 300px; /* Puedes ajustar esta altura según sea necesario */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Estilos responsivos para asegurar que las tarjetas se ajusten en diferentes tamaños de pantalla */
+@media (max-width: 767px) {
+  .book-card-img {
+    height: 200px;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .book-card-img {
+    height: 250px;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 992px) {
+  .book-card-img {
+    height: 300px;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
