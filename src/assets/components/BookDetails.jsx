@@ -10,12 +10,7 @@ const BookDetails = () => {
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        const response = await axios.get(`/api/v1/pages/${id}`, {
-          headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_NOTION_API_KEY}`,
-            'Notion-Version': '2022-06-28'
-          }
-        });
+        const response = await axios.get(`/api/book/${id}`);
         setBook(response.data);
       } catch (error) {
         console.error('Error fetching book details:', error);

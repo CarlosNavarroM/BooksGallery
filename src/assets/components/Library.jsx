@@ -12,12 +12,7 @@ const Library = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.post(`/api/v1/databases/${import.meta.env.VITE_NOTION_DATABASE_ID}/query`, {}, {
-          headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_NOTION_API_KEY}`,
-            'Notion-Version': '2022-06-28'
-          }
-        });
+        const response = await axios.post('/api/books');
         setBooks(response.data.results);
       } catch (error) {
         console.error('Error fetching books:', error);
@@ -33,11 +28,15 @@ const Library = () => {
   return (
     <Container className="library-container">
       <Row>
-        {books.map(book => (
-          <Col key={book.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex align-items-stretch">
-            <BookCard book={book} onClick={() => handleBookClick(book.id)} />
-          </Col>
-        ))}
+        {books.length > 0 ? (
+          books.map(book => (
+            <Col key={book.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex align-items-stretch">
+              <BookCard book={book} onClick={() => handleBookClick(book.id)} />
+            </Col>
+          ))
+        ) : (
+          <p>No books found.</p>
+        )}
       </Row>
     </Container>
   );
