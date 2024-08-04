@@ -1,0 +1,41 @@
+.book-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .book-cover {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .book-info {
+    max-width: 500px;
+    text-align: left;
+  }
+  
+  .book-info h2 {
+    margin: 0;
+  }
+  
+  .book-info h3 {
+    margin: 0;
+    color: #555;
+  }
+  
+  .book-info p {
+    margin: 5px 0;
+  }
+  
+  a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
