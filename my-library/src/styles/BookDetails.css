@@ -1,0 +1,21 @@
+.book-details {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .book-cover {
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  
+  a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
