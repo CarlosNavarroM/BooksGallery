@@ -12,8 +12,8 @@ const Library = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.post('/api/books');
-        setBooks(response.data.results);
+        const response = await axios.get('/api/books');
+        setBooks(response.data);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
@@ -28,15 +28,11 @@ const Library = () => {
   return (
     <Container className="library-container">
       <Row>
-        {books.length > 0 ? (
-          books.map(book => (
-            <Col key={book.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex align-items-stretch">
-              <BookCard book={book} onClick={() => handleBookClick(book.id)} />
-            </Col>
-          ))
-        ) : (
-          <p>No books found.</p>
-        )}
+        {books.map(book => (
+          <Col key={book.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex align-items-stretch">
+            <BookCard book={book} onClick={() => handleBookClick(book.id)} />
+          </Col>
+        ))}
       </Row>
     </Container>
   );
