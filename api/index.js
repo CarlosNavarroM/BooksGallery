@@ -20,6 +20,22 @@ app.get('/api/books', async (req, res) => {
   }
 });
 
+app.get('/api/books/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const response = await axios.get(`https://api.notion.com/v1/pages/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
+        'Notion-Version': '2022-06-28'
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching book details from Notion:', error);
+    res.status(500).json({ error: 'Failed to fetch book details from Notion' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
