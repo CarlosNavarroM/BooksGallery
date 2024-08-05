@@ -1,17 +1,19 @@
 {
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "@vercel/node@20.0.0"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+    "version": 2,
+    "functions": {
+      "api/**/*.js": {
+        "runtime": "@vercel/node@20.x"
+      }
     },
-    {
-      "source": "/(.*)",
-      "destination": "/client/$1"
-    }
-  ]
-}
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "/api/$1"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/client/$1"
+      }
+    ]
+  }
+  
