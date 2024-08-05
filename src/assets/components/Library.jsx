@@ -13,7 +13,11 @@ const Library = () => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get('/api/books');
-        setBooks(response.data);
+        if (Array.isArray(response.data)) {
+          setBooks(response.data);
+        } else {
+          console.error('Unexpected response data format', response.data);
+        }
       } catch (error) {
         console.error('Error fetching books:', error);
       }
