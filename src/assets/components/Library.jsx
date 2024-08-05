@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { useSpring, animated } from '@react-spring/web';
 import '../../styles/Library.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -26,26 +25,30 @@ const Library = () => {
   };
 
   return (
-    <Container className="library-container">
-      <Row>
+    <div className="library-container">
+      <div className="books-grid">
         {books.map(book => (
-          <Col key={book.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex align-items-stretch">
-            <BookCard book={book} onClick={() => handleBookClick(book.id)} />
-          </Col>
+          <AnimatedBookCard key={book.id} book={book} onClick={() => handleBookClick(book.id)} />
         ))}
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 };
 
-const BookCard = ({ book, onClick }) => {
+const AnimatedBookCard = ({ book, onClick }) => {
+  const props = useSpring({
+    from: { opacity: 0, transform: 'scale(0.9)' },
+    to: { opacity: 1, transform: 'scale(1)' },
+    config: { tension: 220, friction: 120 }
+  });
+
   const portada = book.properties.Portada?.files?.[0]?.external?.url || book.properties.Portada?.files?.[0]?.file?.url || 'default-image-url';
   const titulo = book.properties.Título?.title?.[0]?.text?.content || 'Título desconocido';
 
   return (
-    <div className="book-card" onClick={onClick}>
-      <img src={portada} alt={titulo} className="book-card-img" />
-    </div>
+    <animated.div style={props} className="book-card" onClick={onClick}>
+      <img src={portada} alt={titulo} />
+    </animated.div>
   );
 };
 
