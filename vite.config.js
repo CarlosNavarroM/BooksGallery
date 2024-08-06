@@ -1,23 +1,31 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
 
-export default defineConfig(({ mode }) => {
-  // Cargar variables de entorno desde .env
-  const env = loadEnv(mode, process.cwd(), '');
-  const apiUrl = env.VITE_API_URL || 'https://books-gallery-api.vercel.app'; // URL de tu API en Vercel
+dotenv.config();
 
-  return {
-    plugins: [react()],
-    base: '/',  // Ajusta esto si tu aplicación está en un subdirectorio en Vercel
-    server: {
-      proxy: {
-        '/api': {
-          target: apiUrl, 
-          changeOrigin: true, 
-          rewrite: (path) => path.replace(/^\/api/, ''), 
-          secure: true, // Asumiendo que tu API usa HTTPS
-        },
+export default defineConfig({
+  plugins: [react()],
+  root: './client',
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://books-gallery-api.vercel.app/',
+        changeOrigin: true,
       },
     },
-  };
+  },
+  build: {
+    outDir: '../dist',
+    rollupOptions: {
+      input: {
+        main: './client/src/main.jsx' // Corrige la ruta de entrada principal
+      }
+    }
+  },
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
 });
