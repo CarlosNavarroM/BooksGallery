@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import apiClient from '../../axiosconfig';
 import { useParams } from 'react-router-dom';
 import '../../styles/BookDetails.css';
 
@@ -10,7 +10,7 @@ const BookDetails = () => {
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        const response = await axios.get(`/api/books/${id}`);
+        const response = await apiClient.get(`/books/${id}`);
         setBook(response.data);
       } catch (error) {
         console.error('Error fetching book details:', error);
