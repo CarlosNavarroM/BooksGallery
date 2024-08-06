@@ -6,26 +6,16 @@ dotenv.config();
 
 export default defineConfig({
   plugins: [react()],
-  root: './client',
   server: {
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
   build: {
-    outDir: '../dist',
-    rollupOptions: {
-      input: {
-        main: './client/src/main.jsx' // Corrige la ruta de entrada principal
-      }
-    }
-  },
-  resolve: {
-    alias: {
-      '@': '/src',
-    },
+    outDir: 'dist',
   },
 });
