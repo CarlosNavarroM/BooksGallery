@@ -6,26 +6,26 @@ dotenv.config();
 
 export default defineConfig({
   plugins: [react()],
-  root: './client', // La carpeta 'client' es la raíz para Vite
+  root: './client',
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001', // Asegura que el proxy apunta a tu backend
+        target: 'http://localhost:3001',
         changeOrigin: true,
       },
     },
   },
   build: {
-    outDir: '../dist', // Los archivos de construcción se colocarán fuera de la carpeta 'client'
+    outDir: '../dist',
     rollupOptions: {
       input: {
-        main: '/src/main.jsx' // Establece 'main.jsx' como el archivo de entrada principal
+        main: './client/src/main.jsx' // Corrige la ruta de entrada principal
       }
     }
   },
   resolve: {
     alias: {
-      '@': '/src', // Facilita las importaciones desde la carpeta 'src'
+      '@': '/src',
     },
   },
 });
