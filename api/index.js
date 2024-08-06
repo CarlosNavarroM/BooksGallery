@@ -6,6 +6,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const app = express();
 const port = process.env.PORT || 3001;
 
+app.use(cors());
+
 app.get('/api/books', async (req, res) => {
   try {
     const response = await axios.post(`https://api.notion.com/v1/databases/${process.env.NOTION_DATABASE_ID}/query`, {}, {
