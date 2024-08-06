@@ -44,7 +44,7 @@ const Library = () => {
 
 const BookCard = ({ book, onClick }) => {
   const portada = book.properties.Portada?.files?.[0]?.external?.url || book.properties.Portada?.files?.[0]?.file?.url || 'default-image-url';
-  const titulo = book.properties.Título?.title?.[0]?.text?.content || 'Título desconocido';
+  const titulo = book.properties.Título?.title?.[0]?.text?.content || 'Titulo desconocido';
 
   return (
     <div className="book-card" onClick={onClick}>
