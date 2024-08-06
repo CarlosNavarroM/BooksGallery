@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -37,6 +37,5 @@ app.get('/api/books/:id', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Export the Express API as a module
+module.exports = app;
