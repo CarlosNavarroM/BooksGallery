@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
+import apiClient from '../../axiosconfig';
 import '../../styles/Library.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -12,7 +13,7 @@ const Library = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('/api/books');
+        const response = await apiClient.get('/api/books');
         if (Array.isArray(response.data)) {
           setBooks(response.data);
         } else {
