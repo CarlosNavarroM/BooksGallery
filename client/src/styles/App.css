@@ -1,8 +1,15 @@
+/* Importar una buena fuente para una biblioteca */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+
 /* Estilos generales para la aplicación */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f8f9fa;
+  font-family: 'Merriweather', serif;
+  background: linear-gradient(135deg, #63a7eb 0%, #e8e9eb 100%) !important;
+  color: #333;
+  min-height: 100vh;
+  min-width: 100vw;
+  
 }
 
 /* Estilos para el contenedor principal */
@@ -14,6 +21,28 @@ body {
 }
 
 /* Estilos para el título principal */
+.App-header {
+  text-align: center;
+  padding: 20px;
+ 
+}
+
+.App-header h1 {
+  font-size: 4rem; /* Título más grande */
+  margin: 0;
+  color: #000; /* Color negro para el título */
+}
+
+.App-header h1 a {
+  color: #000000; /* Color negro para el enlace */
+  text-decoration: none;
+}
+
+.App-header h1 a:hover {
+  text-decoration: underline; /* Opcional: subrayado al pasar el cursor */
+}
+
+/* Estilos para el título dentro del contenedor principal */
 .library-container h1 {
   font-size: 2.5rem;
   margin-bottom: 40px;
@@ -31,10 +60,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .book-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .book-card-img {
@@ -49,16 +81,50 @@ body {
   .book-card-img {
     height: 200px;
   }
+  
+  .App-header h1 {
+    font-size: 6vw; /* Título se ajustará al 6% del ancho de la ventana */
+  }
+  
+  .library-container h1 {
+    font-size: 5vw; /* Título en el contenedor se ajustará al 5% del ancho de la ventana */
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .book-card-img {
     height: 250px;
   }
+  
+  .App-header h1 {
+    font-size: 5vw; /* Ajustar tamaño para pantallas medianas */
+  }
+  
+  .library-container h1 {
+    font-size: 4vw;
+  }
 }
 
 @media (min-width: 992px) {
   .book-card-img {
     height: 300px;
+  }
+  
+  .App-header h1 {
+    font-size: 4vw; /* Ajustar tamaño para pantallas grandes */
+  }
+  
+  .library-container h1 {
+    font-size: 3.5vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .App-header h1 {
+    font-size: 3.5vw; /* Ajustar tamaño para pantallas extra grandes */
+  }
+  
+  .library-container h1 {
+    font-size: 3vw;
   }
 }

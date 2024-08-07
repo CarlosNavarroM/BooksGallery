@@ -30,6 +30,10 @@ const BookDetails = () => {
   const opinion = book.properties.Opinion?.rich_text?.[0]?.text?.content || 'Sin opinión';
   const archivo = book.properties.Archivos?.files?.[0]?.file?.url || '#';
 
+  const handleButtonClick = () => {
+    window.open(archivo, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="book-details">
       <img src={portada} alt={titulo} className="book-cover" />
@@ -38,7 +42,9 @@ const BookDetails = () => {
         <h3>{autor}</h3>
         <p>{año}</p>
         <p>{opinion}</p>
-        <a href={archivo} target="_blank" rel="noopener noreferrer">Ir al libro</a>
+        <button className='button' onClick={handleButtonClick}>
+          Ir al libro
+        </button>
       </div>
     </div>
   );
